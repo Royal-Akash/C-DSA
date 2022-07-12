@@ -10,28 +10,30 @@
  * };
  */
 class Solution {
-    private:
-    
-    void solve(TreeNode* root ,vector<int> &ans ){
-        
-        if(root==NULL){
-            return;
-        }
-        
-        ans.push_back(root->val);
-        solve(root->left , ans);
-        solve(root->right , ans);
-        
-        
-    }
     
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         
-        vector<int> ans;
-        solve(root , ans);
-        return ans;
+      vector<int> preorder;
         
+        if(root==NULL) return preorder;
+        stack<TreeNode*>st;
+         st.push(root);
         
+        while(!st.empty()){
+            
+            root=st.top();
+            st.pop();
+            
+            preorder.push_back(root->val);
+            if(root->right!=NULL){
+                st.push(root->right);
+            }
+            if(root->left!=NULL){
+                st.push(root->left);
+            }
+            
+        }
+        return preorder;
     }
 };
