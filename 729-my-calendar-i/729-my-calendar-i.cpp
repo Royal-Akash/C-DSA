@@ -1,25 +1,21 @@
 class MyCalendar {
+    
+    private: vector<pair<int , int>> vp;
 public:
-    map<int , int> mp;
     MyCalendar() {
         
     }
     
     bool book(int start, int end) {
         
-        mp[start]++;
-        mp[end]--;
-        int sum=0;
-        for(auto it = mp.begin() ; it!=mp.end();it++){
+        for(auto it : vp){
             
-            sum+=it->second;
-            if(sum>1){
-                mp[start]--;
-                mp[end]++;
+            if(it.first<end && it.second>start){
                 return false;
             }
             
         }
+        vp.push_back({start , end});
         return true;
     }
 };
