@@ -1,7 +1,6 @@
 class Solution {
 public:
     
-    
     int mirrorReflection(int p, int q) {
   	// gcd of p and q using inbuilt function
   	int g = __gcd(p,q);
