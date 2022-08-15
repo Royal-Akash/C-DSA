@@ -4,8 +4,8 @@ public:
         
         int m = str1.size();
         int n = str2.size();
-        // int dp[m+1][n+1];
-        vector<vector<int>>dp(m+1,vector<int>(n+1,0));
+        int dp[m+1][n+1];
+        // vector<vector<int>>dp(m+1,vector<int>(n+1,0));
         
         for(int i=0;i<=n;i++) dp[0][i]=0;
         for(int i=0;i<=m;i++) dp[i][0]=0;
