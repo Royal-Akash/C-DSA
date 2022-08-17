@@ -6,23 +6,22 @@ public:
         if(i>=j){return 0;}
         if(dp[i][j]!=-1) {return dp[i][j];}
         
-        dp[i][j]=INT_MAX;
-        // int count = INT_MAX;
+        // dp[i][j]=INT_MAX;
+        int count = INT_MAX;
         for(int k=i;k<=j-1;k++){
             
-            dp[i][j] = min(dp[i][j] , findsoln(values , i , k)+findsoln(values , k+1 , j)+
-                values[i-1]*values[k]*values[j]);
+            // dp[i][j] = min(dp[i][j] , findsoln(values , i , k)+findsoln(values , k+1 , j)+
+            //     values[i-1]*values[k]*values[j]);
             
             // count=min(count , temp);
             
-            // int temp = findsoln(values , i , k)+findsoln(values , k+1 , j)+
-            //     values[i-1]*values[k]*values[j];
-            // count=min(count , temp);
+            int temp = findsoln(values , i , k)+findsoln(values , k+1 , j)+
+                values[i-1]*values[k]*values[j];
+            count=min(count , temp);
 
         }
         // dp[i][j]=count;
-        // return dp[i][j]=count;
-         return dp[i][j];
+        return dp[i][j]=count;
     }
     
     int minScoreTriangulation(vector<int>& values) {
