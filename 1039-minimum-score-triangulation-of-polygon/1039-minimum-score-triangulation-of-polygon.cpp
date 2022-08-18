@@ -20,14 +20,14 @@ public:
             count=min(count , temp);
 
         }
-        // dp[i][j]=count;
-        return dp[i][j]=count;
+        dp[i][j]=count;
+        return dp[i][j];
     }
     
     int minScoreTriangulation(vector<int>& values) {
         
         int n = values.size();
-        int i=0 , j=n-1;
+        // int i=0 , j=n-1;
         memset(dp , -1 , sizeof(dp));
         return findsoln(values , 1 , n-1);
         
