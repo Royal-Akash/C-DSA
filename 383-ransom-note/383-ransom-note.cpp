@@ -2,7 +2,7 @@ class Solution {
 public:
     bool canConstruct(string r, string m){
         
-        unordered_map<char , int> mp(26);
+        unordered_map<char , int> mp;
         for(int i=0;i<m.size();i++){
             mp[m[i]]++;
         }
