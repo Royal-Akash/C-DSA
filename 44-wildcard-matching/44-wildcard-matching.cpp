@@ -1,9 +1,9 @@
 class Solution {
 public:
-    bool findstar(int i , string& s){
+    bool findstar(int i , string& p){
         
         for(int j=1;j<=i;j++){
-            if(s[j-1]!='*'){
+            if(p[j-1]!='*'){
                 return false;
             }
         }
@@ -18,23 +18,23 @@ public:
         vector<vector<bool>> dp(n+1  , vector<bool>(m+1 , false));
         
         dp[0][0]=true;
-        // for(int j=1;j<=m;j++){
-        //     dp[0][j]=false;
-        // }
-        // for(int j=1;j<=n;j++){
-        //     dp[j][0]=findstar(j , s);
-        // }
-        
         for(int j=1;j<=m;j++){
-            bool flag = true;
-            for(int k=1;k<=j;k++){
-                if(p[k-1] != '*'){
-                    flag = false;
-                    break;
-                }
-            }
-            dp[0][j] = flag;
+            dp[0][j]=findstar(j , p);
         }
+        for(int j=1;j<=n;j++){
+            dp[j][0]=false;
+        }
+        
+//         for(int j=1;j<=m;j++){
+//             bool flag = true;
+//             for(int k=1;k<=j;k++){
+//                 if(p[k-1] != '*'){
+//                     flag = false;
+//                     break;
+//                 }
+//             }
+//             dp[0][j] = flag;
+//         }
         
         for(int i=1;i<=n;i++){
             for(int j=1;j<=m;j++){
