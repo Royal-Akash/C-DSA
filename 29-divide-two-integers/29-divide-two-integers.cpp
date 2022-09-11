@@ -11,9 +11,9 @@ public:
         while(dv<=dd){
             
             long int sum=dv , count=1;
-            while(sum<=dd-sum){
-                sum+=sum;
-                count+=count;
+            while((sum<<1)<=dd){
+                sum<<=1;
+                count<<=1;
             }
             res+=count;
             dd-=sum;
