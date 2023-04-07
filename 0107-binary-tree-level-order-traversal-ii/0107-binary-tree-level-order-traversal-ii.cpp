@@ -25,6 +25,7 @@ public:
         
         int size = maxdepth(root);
         vector<vector<int>>level(size);
+        size--;
         if(root==NULL) return level;
         queue<TreeNode*>q;
         q.push(root);
@@ -40,8 +41,8 @@ public:
                 if(curr->right) q.push(curr->right);
                 
             }
-            level[size-1-j].insert(level[size-1-j].begin(), ans.begin(), ans.end());
-            // level[size-1-j].push_back(ans);
+            // level[size-1-j].insert(level[size-1-j].begin(), ans.begin(), ans.end());
+            level[size--]=ans;
             j++;
             
         }
