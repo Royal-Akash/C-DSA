@@ -12,7 +12,7 @@
 class Solution {
      vector<vector<int>>ans;
 private:
-    void getPath(TreeNode* root, int targetSum , int sum , vector<int>&arr){
+     void getPath(TreeNode* root, int targetSum , int sum , vector<int>&arr){
         
         if(!root) return;
         
@@ -21,8 +21,6 @@ private:
         
         if(sum==targetSum && root->left==NULL && root->right==NULL){
             ans.push_back(arr);
-            sum=0;
-            // return true;
         }
         getPath(root->left, targetSum, sum, arr);
         getPath(root->right, targetSum, sum, arr);
