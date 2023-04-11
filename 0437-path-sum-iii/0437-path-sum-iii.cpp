@@ -10,27 +10,30 @@
  * };
  */
 class Solution {
-    int total = 0;
-public:
-    int pathSum(TreeNode* root, int targetSum) {
-        if(root==NULL) return 0;
-        findpath(root, targetSum, 0);
-        pathSum(root->left, targetSum);
-        pathSum(root->right, targetSum);
-        return total;
-    }
-    
-    void findpath(TreeNode* root, int targetSum , long long int sum){
-        
+    unordered_map<long, int> mp;
+    int count=0;
+private:
+    void countpath(TreeNode* root, int targetSum, long sum){
         if(!root) return;
         
         sum+=root->val;
-        if(sum==targetSum) total++;
+        if(sum==targetSum) count++;
         
-        findpath(root->left, targetSum, sum);
-        findpath(root->right, targetSum, sum);
+        if(mp.count(sum-targetSum)){
+            count+=mp[sum-targetSum];
+        }
+        mp[sum]++;
+        
+        countpath(root->left, targetSum, sum);
+        countpath(root->right, targetSum, sum);
+        mp[sum]--;
+        
+    }
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        
+        countpath(root, targetSum, 0);
+        return count;
         
     }
 };
-
-// TC = O(n^2)
