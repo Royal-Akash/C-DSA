@@ -15,37 +15,53 @@ public:
         : val(_val), left(_left), right(_right), next(_next) {}
 };
 */
+// class Solution {
+// public:
+//     Node* connect(Node* root) {
+        
+//         queue<Node*>q;
+//         q.push(root);
+//         if(!root) return root;
+//         while(!q.empty()){
+            
+//             int size = q.size();
+//             for(int i=0;i<size;i++){
+//                 Node* tree = q.front();
+//                 q.pop();
+                
+//                 if(tree->left){
+//                     q.push(tree->left);
+//                 }
+//                 if(tree->right){
+//                     q.push(tree->right);
+//                 }
+//                 if(!q.empty()){
+//                     tree->next=q.front();
+//                 }
+//                 if(i==size-1){
+//                     tree->next=NULL;
+//                 }
+//             }
+            
+//         }
+//         return root;
+        
+//     }
+// };
+
 
 class Solution {
 public:
     Node* connect(Node* root) {
         
-        queue<Node*>q;
-        q.push(root);
         if(!root) return root;
-        while(!q.empty()){
-            
-            int size = q.size();
-            for(int i=0;i<size;i++){
-                // queue<Node*>q1;
-                Node* tree = q.front();
-                q.pop();
-                
-                if(tree->left){
-                    q.push(tree->left);
-                }
-                if(tree->right){
-                    q.push(tree->right);
-                }
-                if(!q.empty()){
-                    tree->next=q.front();
-                }
-                if(i==size-1){
-                    tree->next=NULL;
-                }
-            }
-            
-        }
+        
+        if(root->left) root->left->next = root->right;
+        if(root->right && root->next) root->right->next = root->next->left;
+        
+        connect(root->left);
+        connect(root->right);
+        
         return root;
         
     }
