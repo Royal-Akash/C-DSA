@@ -10,13 +10,13 @@ public:
             return intervals;
         }
         for(int i=1;i<n;i++){
-            if(temp[1]>=intervals[i][0] && temp[1]<=intervals[i][1]){
-                temp[1]=intervals[i][1];
+            if(temp[1]>=intervals[i][0]){
+                temp[1]=max(temp[1], intervals[i][1]);
                 
             }
-            else if(temp[1]>=intervals[i][0] && temp[1]>=intervals[i][1]){
-                continue;
-            }
+            // else if(temp[1]>=intervals[i][0] && temp[1]>=intervals[i][1]){
+            //     continue;
+            // }
             else{
                 ans.push_back(temp);
                 temp=intervals[i];
