@@ -9,27 +9,25 @@ public:
         if(n==1){
             ans.push_back(temp);
         }
-        
         for(int i=1;i<n;i++){
             if(temp[1]>=intervals[i][0] && temp[1]<=intervals[i][1]){
                 temp[1]=intervals[i][1];
-                if(i==n-1){ ans.push_back(temp);}
                 
             }
             else if(temp[1]>=intervals[i][0] && temp[1]>=intervals[i][1]){
-                
-                if(i==n-1){ ans.push_back(temp);}
+                if(i==n-1){
+                ans.push_back(temp);
+            }
                 continue;
             }
             else{
                 ans.push_back(temp);
                 temp=intervals[i];
-                if(i==n-1){ ans.push_back(temp);}
             }
-            // if(i==n-1) ans.push_back(temp);
+            if(i==n-1){
+                ans.push_back(temp);
+            }
         }
         return ans;
-       
-        
     }
 };
