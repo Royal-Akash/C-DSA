@@ -1,13 +1,10 @@
-#define long long LL
 class Solution {
 private:
-    int merge(vector<int>&a, int low, int mid, int high){
+    void merge(vector<int>&a, int low, int mid, int high){
     
-    int cnt = 0;
     int left = low;
     int right = mid+1;
     vector<int>temp;
-    int sum=0;
         
     while(left<=mid && right<=high){
         
@@ -32,7 +29,6 @@ private:
     for(int i=low;i<=high;i++){
         a[i]=temp[i-low];
     }
-    return sum;
     
 }
 
