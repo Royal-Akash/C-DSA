@@ -10,8 +10,8 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         
-        ListNode * fast = head, *slow = head, *newList=NULL;
-        if(head==NULL || head->next==NULL) return newList;
+        ListNode * fast = head, *slow = head;
+        if(head==NULL || head->next==NULL) return NULL;
         
         while(fast!=NULL && fast->next!=NULL){
             fast=fast->next->next;
@@ -20,13 +20,13 @@ public:
             if(fast==slow) break;
         }
         slow = head;
-        if(fast==NULL || fast->next==NULL) return newList;
+        if(fast==NULL || fast->next==NULL) return NULL;
         else{
             while(slow!=fast){
                 fast=fast->next;
                 slow=slow->next;
             }
-            newList = fast;}
-        return newList;
+        }
+        return fast;
     }
 };
