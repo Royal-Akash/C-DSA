@@ -10,10 +10,7 @@ public:
                 if(s[j-1]==s[j]){
                     count++;
                 }
-                if(count==2){
-                    break;
-                }
-                else{
+                if(count<=1){
                     maxi=max(maxi, j-i+1);
                 }
             }
