@@ -10,10 +10,10 @@ public:
     
     int get(int key) {
         
-        if(mp.find(key)==mp.end()) return -1;
+        if(!mp.count(key)) return -1;
         l.erase(address[key]);
-        address.erase(key);
         l.push_front(key);
+        address.erase(key);
         address[key]=l.begin();
         return mp[key];
             
@@ -21,8 +21,7 @@ public:
     
     void put(int key, int value) {
         
-        
-        if(mp.find(key)!=mp.end()){
+        if(mp.count(key)){
             l.erase(address[key]);
             address.erase(key);
             mp.erase(key);
