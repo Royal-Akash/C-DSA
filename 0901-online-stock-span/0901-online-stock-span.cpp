@@ -1,25 +1,17 @@
 class StockSpanner {
 public:
-    stack<int>st;
-    unordered_map<int, int>mp;
+    stack<pair<int, int>>st;
     StockSpanner() {
         
     }
     
     int next(int price) {
         int num = 1;
-        if(st.empty()){
-            st.push(price);
-            mp[price]++;
+        while(!st.empty() && st.top().first<=price){
+            num+=st.top().second;
+            st.pop();
         }
-        else{
-            while(!st.empty() && st.top()<=price){
-                num+=mp[st.top()];
-                st.pop();
-            }
-            st.push(price);
-            mp[price]=num;
-        }
+        st.push({price, num});
         return num;
     }
 };
