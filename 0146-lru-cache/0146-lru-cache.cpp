@@ -13,7 +13,7 @@ public:
         if(!mp.count(key)) return -1;
         l.erase(address[key]);
         l.push_front(key);
-        address.erase(key);
+        // address.erase(key);
         address[key]=l.begin();
         return mp[key];
             
@@ -23,8 +23,8 @@ public:
         
         if(mp.count(key)){
             l.erase(address[key]);
-            address.erase(key);
-            mp.erase(key);
+            // address.erase(key);
+            // mp.erase(key);
         }
         int n = l.size();
         if(n==size){
