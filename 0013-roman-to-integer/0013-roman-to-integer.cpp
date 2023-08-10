@@ -12,7 +12,7 @@ public:
      roman['M']=1000;
      
      for(int i=0;i<s.size();i++){
-         if(roman[s[i]]<roman[s[i+1]]){
+         if(i<s.size()-1 && roman[s[i]]<roman[s[i+1]]){
              sum-=roman[s[i]];
          }
          else{
