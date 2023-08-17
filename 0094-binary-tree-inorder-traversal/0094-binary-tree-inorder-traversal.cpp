@@ -10,23 +10,17 @@
  * };
  */
 class Solution {
-private:
-    void findInorder(TreeNode* root ,vector<int>&inorder){
-        
+public:
+    void findinorder(TreeNode* root, vector<int>&ans){
         if(root==NULL) return;
         
-        findInorder(root->left , inorder);
-        inorder.push_back(root->val);
-        findInorder(root->right , inorder);
-        
+        findinorder(root->left, ans);
+        ans.push_back(root->val);
+        findinorder(root->right, ans);
     }
-public:
     vector<int> inorderTraversal(TreeNode* root) {
-        
-        vector<int>inorder;
-        findInorder(root , inorder);
-        return inorder;
-        
-        
+        vector<int>ans;
+        findinorder(root, ans);
+        return ans;
     }
 };
