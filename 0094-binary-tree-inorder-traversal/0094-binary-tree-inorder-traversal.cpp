@@ -10,6 +10,7 @@
  * };
  */
 
+// Recursion
 // void findinorder(TreeNode* root, vector<int>&ans){
 //         if(root==NULL) return;
         
@@ -23,31 +24,59 @@
 //         return ans;
 //     }
 
+// Iterative approach
+//         stack<TreeNode*> st;
+//         vector<int>ans;
+//         TreeNode*node = root;
+        
+//         while(true){
+            
+//             if(node!=NULL){
+//                 st.push(node);
+//                 node=node->left;
+//             }
+//             else{
+//                 if(st.empty()) break;
+                
+//                 node = st.top();
+//                 st.pop();
+//                 ans.push_back(node->val);
+//                 node=node->right;
+//             }
+            
+//         }
+//         return ans;
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         
-        stack<TreeNode*> st;
         vector<int>ans;
-        TreeNode*node = root;
+        if(root==NULL) return ans;
         
-        while(true){
-            
-            if(node!=NULL){
-                st.push(node);
-                node=node->left;
+        TreeNode*curr = root;
+        while(curr!=NULL){
+        
+            if(curr->left==NULL){
+                ans.push_back(curr->val);
+                curr=curr->right;
             }
             else{
-                if(st.empty()) break;
                 
-                node = st.top();
-                st.pop();
-                ans.push_back(node->val);
-                node=node->right;
+                TreeNode*prev=curr->left;
+                while(prev->right && prev->right!=curr){
+                    prev=prev->right;
+                }
+                if(prev->right==NULL){
+                    prev->right=curr;
+                    curr=curr->left;
+                }
+                else{
+                    prev->right=NULL;
+                    ans.push_back(curr->val);
+                    curr=curr->right;
+                }
             }
-            
         }
         return ans;
-        
     }
 };
