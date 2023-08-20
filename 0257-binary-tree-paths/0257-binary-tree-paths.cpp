@@ -11,18 +11,15 @@
  */
 class Solution {
 public:
-    void getleaf(TreeNode* root, vector<string>&ans, vector<int>&s){
+    void getleaf(TreeNode* root, vector<string>&ans, string s){
         
         if(root==NULL) return;
-        s.push_back(root->val);
-        
-        if(root->left==NULL && root->right==NULL){
-            string num = "";
-            num+=to_string(s[0]);
-            for(int i=1;i<s.size();i++){
-                num=num+"->"+to_string(s[i]);
-            }
-            ans.push_back(num);
+        if(root->left || root->right){
+            s+=to_string(root->val)+"->";
+        }
+        else{
+            s+=to_string(root->val);
+            ans.push_back(s);
         }
         if(root->left){
             getleaf(root->left, ans, s);
@@ -31,13 +28,11 @@ public:
             getleaf(root->right, ans, s);
         }
         
-        s.pop_back();
-        
     }
     vector<string> binaryTreePaths(TreeNode* root) {
         
         vector<string>ans;
-        vector<int>s;
+        string s="";
         getleaf(root, ans, s);
         return ans;
         
