@@ -12,7 +12,7 @@
 class Solution {
 public:
     TreeNode* build(vector<int>& postorder, int pstart, int pend, vector<int>& inorder, int istart, int iend, unordered_map<int, int>&mp){
-        if(pstart>pend || istart>iend) return NULL;
+        if(pend>pstart || istart>iend) return NULL;
         
         TreeNode* node = new TreeNode(postorder[pstart]);
         
@@ -20,19 +20,20 @@ public:
         int remr = iend-proot;
         int reml = proot-istart;
         
-        node->left = build(postorder, pstart+remr+1, pend, inorder, istart, proot-1, mp);
-        node->right= build(postorder, pstart+1, pstart+remr, inorder, proot+1, iend, mp);
+        node->left = build(postorder, pstart-remr-1, pend, inorder, istart, proot-1, mp);
+        node->right= build(postorder, pstart-1, pstart-remr, inorder, proot+1, iend, mp);
         
         return node;
         
     }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         unordered_map<int, int>mp;
+        if(inorder.size()!=postorder.size()) return NULL;
         for(int i=0;i<=inorder.size()-1;i++){
             mp[inorder[i]]=i;
         }
-        reverse(postorder.begin(), postorder.end());
-        TreeNode* root = build(postorder, 0, postorder.size()-1, inorder, 0, inorder.size()-1, mp);
+        // reverse(postorder.begin(), postorder.end());
+        TreeNode* root = build(postorder, postorder.size()-1, 0, inorder, 0, inorder.size()-1, mp);
         return root;
     }
 };
