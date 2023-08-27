@@ -15,53 +15,33 @@ public:
         : val(_val), left(_left), right(_right), next(_next) {}
 };
 */
-// class Solution {
-// public:
-//     Node* connect(Node* root) {
-        
-//         queue<Node*>q;
-//         q.push(root);
-//         if(!root) return root;
-//         while(!q.empty()){
-            
-//             int size = q.size();
-//             for(int i=0;i<size;i++){
-//                 Node* tree = q.front();
-//                 q.pop();
-                
-//                 if(tree->left){
-//                     q.push(tree->left);
-//                 }
-//                 if(tree->right){
-//                     q.push(tree->right);
-//                 }
-//                 if(!q.empty()){
-//                     tree->next=q.front();
-//                 }
-//                 if(i==size-1){
-//                     tree->next=NULL;
-//                 }
-//             }
-            
-//         }
-//         return root;
-        
-//     }
-// };
-
 
 class Solution {
 public:
     Node* connect(Node* root) {
-        
-        if(!root) return root;
-        
-        if(root->left) root->left->next = root->right;
-        if(root->right && root->next) root->right->next = root->next->left;
-        
-        connect(root->left);
-        connect(root->right);
-        
+        if(root==NULL) return root;
+        queue<Node*>st;
+        st.push(root);
+        while(!st.empty()){
+            int n = st.size();
+            for(int i=0;i<n;i++){
+                
+                Node* node = st.front();
+                st.pop();
+                node->next=st.front();
+                if(node->left){
+                    st.push(node->left);
+                }
+                if(node->right){
+                    st.push(node->right);
+                }
+                
+                if(i==n-1){
+                    node->next=NULL;
+                }
+                
+            }
+        }
         return root;
         
     }
