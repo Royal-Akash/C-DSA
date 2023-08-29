@@ -14,10 +14,7 @@ public:
     stack<TreeNode*>st;
     BSTIterator(TreeNode* root) {
         st.push(root);
-        while(root->left){
-            st.push(root->left);
-            root=root->left;
-        }
+        pushall(root);
     }
     
     int next() {
@@ -27,13 +24,16 @@ public:
         if(ans->right){
             st.push(ans->right);
             ans=ans->right;
-            while(ans->left){
-                st.push(ans->left);
-                ans=ans->left;
-            }
+            pushall(ans);
         }
         return temp->val;
         
+    }
+    void pushall(TreeNode*root){
+        while(root->left){
+            st.push(root->left);
+            root=root->left;
+        }
     }
     
     bool hasNext() {
