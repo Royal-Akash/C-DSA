@@ -17,7 +17,7 @@ public:
     BSTIterator(TreeNode*root, bool direction){
         flag=direction;
         st.push(root);
-        pushall(root, flag);
+        pushall(root);
     }
     
     int next(bool direction){
@@ -27,18 +27,18 @@ public:
         if(direction==false && ans->right){
             st.push(ans->right);
             ans=ans->right;
-            pushall(ans, direction);
+            pushall(ans);
         }
         else if(direction==true && ans->left){
             st.push(ans->left);
             ans=ans->left;
-            pushall(ans, direction);
+            pushall(ans);
         }
         return temp->val;
     }
     
-    void pushall(TreeNode* root, bool direction){
-        if(direction==true){
+    void pushall(TreeNode* root){
+        if(flag==true){
             while(root->right){
                 st.push(root->right);
                 root=root->right;
