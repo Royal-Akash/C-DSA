@@ -21,25 +21,27 @@ public:
         // return ans;
         
         vector<vector<int>>dp(n, vector<int>(amt+1, 0));
+        vector<int>prev(amt+1, 0), curr(amt+1, 0);
         for(int i=0;i<=amt;i++){
             if(i%coins[0]==0){
-                dp[0][i]=i/coins[0];
+                prev[i]=i/coins[0];
             }
             else{
-                dp[0][i]=1e9;
+                prev[i]=1e9;
             }
         }
         
         for(int i=1;i<n;i++){
             for(int j=0;j<=amt;j++){
                 
-                int notake = dp[i-1][j];
+                int notake = prev[j];
                 int take = INT_MAX;
-                if(j>=coins[i]) take = 1+dp[i][j-coins[i]];
-                dp[i][j]=min(take, notake);
+                if(j>=coins[i]) take = 1+curr[j-coins[i]];
+                curr[j]=min(take, notake);
             }
+            prev=curr;
         }
-        if(dp[n-1][amt]>=1e9) return -1;
-        return dp[n-1][amt];
+        if(prev[amt]>=1e9) return -1;
+        return prev[amt];
     }
 };
