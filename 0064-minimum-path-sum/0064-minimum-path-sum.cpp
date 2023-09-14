@@ -9,13 +9,13 @@ public:
             for(int j=0;j<n;j++){
                 if(i==0 && j==0) dp[i][j]=grid[i][j];
                 else{
-                    int up = 0;
-                    int left = 0;
+                    int up = INT_MAX;
+                    int left = INT_MAX;
                     if(i>0) up = dp[i-1][j]+grid[i][j];
-                    else up = INT_MAX;
+                    // else up = INT_MAX;
                     
                     if(j>0) left = dp[i][j-1]+grid[i][j];
-                    else left = INT_MAX;
+                    // else left = INT_MAX;
                     
                     dp[i][j]=min(up,left);
                 }
